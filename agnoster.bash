@@ -128,7 +128,7 @@ ansi() {
     declare -a mycodes=("${!1}")
 
     debug "ansi: ${!1} all: $* aka ${mycodes[@]}"
-    
+
     seq=""
     for ((i = 0; i < ${#mycodes[@]}; i++)); do
 	if [[ -n $seq ]]; then
@@ -206,7 +206,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
     local user=`whoami`
-    
+
     if [[ $user != $DEFAULT_USER || -n $SSH_CLIENT ]]; then
 	prompt_segment black default "$user@\h"
     fi
@@ -242,7 +242,7 @@ prompt_git() {
 
 # Dir: current working directory
 prompt_dir() {
-    prompt_segment blue black '\w'
+    prompt_segment blue white '\w'
 }
 
 # Status:
@@ -289,7 +289,7 @@ ansi_r() {
     declare -a mycodes2=("${!1}")
 
     debug "ansi: ${!1} all: $* aka ${mycodes2[@]}"
-    
+
     seq=""
     for ((i = 0; i < ${#mycodes2[@]}; i++)); do
 	if [[ -n $seq ]]; then
@@ -386,7 +386,7 @@ build_prompt() {
     prompt_end
 }
 
-# from orig... 
+# from orig...
 # export PS1='$(ansi_single $(text_effect reset)) $(build_prompt) '
 # this doesn't work... new model: create a prompt via a PR variable and
 # use that.
